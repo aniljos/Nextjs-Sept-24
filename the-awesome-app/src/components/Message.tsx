@@ -1,6 +1,6 @@
 'use client'
 
-import React from "react";
+import React, { useEffect } from "react";
 
 type MessageProps = {
     text: string,
@@ -17,6 +17,23 @@ const Message:React.FC<MessageProps> = ({color='green', text}) => {
 
 
     //console.log("props", props);
+
+    useEffect(() => {
+        console.log("Message component mounted...");
+
+
+        return () => {
+            console.log("Message component unmounted...");
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log("Message component updated(props.text has changed)...");
+    }, [text])
+
+    useEffect(() => {
+        console.log("Message component updated(props.color has changed)...");
+    }, [color])
 
     return (
         <div>

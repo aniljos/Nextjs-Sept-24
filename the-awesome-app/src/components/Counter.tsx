@@ -1,6 +1,7 @@
 'use client'
 
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
+import Message from "./Message";
 
 // <Counter initialValue={5}/>
 
@@ -17,6 +18,11 @@ function Counter(props: CounterProps){
     //state
     const [ctr, setCtr] = useState(props.initialValue);
     
+    useEffect(() => {
+
+        console.log("useEffect: ctr updated", ctr);
+
+    }, [ctr]);
 
     function inc(evt: MouseEvent<HTMLButtonElement>){
 
@@ -27,10 +33,11 @@ function Counter(props: CounterProps){
         //console.log("ctr", ctr);
 
         setCtr(prevCtr => prevCtr + 1);
-        setCtr(prevCtr => prevCtr + 1);
+        //setCtr(prevCtr => prevCtr + 1);
     }
     function decr(){
         setCtr(ctr - 1);
+        console.log("ctr", ctr);
     }
 
     return (
@@ -40,6 +47,8 @@ function Counter(props: CounterProps){
                 <button onClick={inc}>Inc</button>&nbsp;
                 <button onClick={decr}>Decr</button>
             </div>
+            {ctr > 10 ? <Message text={ctr.toString()} /> : null}
+             
         </div>
     )
 }
