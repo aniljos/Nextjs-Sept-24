@@ -1,0 +1,185 @@
+
+
+Project structure
+
+package.json
+	The npm configuration file: dependencies, scripts
+node_modules
+	All dependecies are installed here
+tsconfig.json
+	Typescript compiler configuration.
+next.config.mjs
+	Next.js configuration file.
+eslintrc.json	
+	Linting
+src folder(optional)
+	source code
+app folder
+	file based routes
+	
+	layout.tsx
+		This defines the layout of the Application
+		This id root component(first component) to be rendered
+	page.tsx
+		The base route: (http://localhost:3000/)
+		
+		
+The Next.js project enables a strict mode(React.StrictMode), this analyse the project for errors or bugs. Acts on in the dev mode.
+
+
+.js ==> javascript
+.jsx ==> javascript with jsx
+
+.ts => typescript
+.tsx = typescript + jsx
+
+
+
+HTML
+	<button onclick="foo(p1)">Click Me</button>
+	
+React
+	<button onClick={foo}>Click Me</button>
+	
+***Re-rendering a component
+	1. props change
+	2. state changes
+	
+setState 
+	1. Async 
+	2. State updates are batched => React 18 onwards
+	3. setState => 2 overloads => setState(updatedValue), setState(callback)
+	
+	
+	
+	
+	ctr = 5
+ setCtr(ctr + 1);   => setCtr(6)
+ setCtr(ctr + 1);   => setCtr(6)
+ 
+ setCtr(prevCtr => prevCtr + 1); => setCtr(call in fn)
+ setCtr(prevCtr => prevCtr + 1); => setCtr(call in fn)
+ 
+ 
+ Expression {} => this cannot have statements only expression
+ 
+ conditional rendering=> ternary operator
+ 
+ useEffect(callback, [dependecies])
+	1. if the dependecy array is empty, then the callback is invoked when the component is mounted.
+	2. Mounted use-cases: API calls, DOM initialization, Timer method
+	3. In the callback invoked when the component is mounted, we can return a callback. This callback is invoked when the component unmounted.
+	4. Unmount: Cancel API calls, unregister any event, clear any timer methods
+	
+	
+<Counter intialValue={5}>
+	<p>Hello</p>
+</Counter>
+
+<RootLayout>
+
+	Home/About/Login
+	
+</RootLayout>
+
+/    => Home
+/about  => About
+/login => Login
+
+Web Application: HTML, CSS, JavaScript
+
+UI/UX team => Figma 
+
+
+Forms
+ controlled input : useState hook, binding the control to a state
+ uncontrolled  input : useRef hook, similar document.getElementById()
+ 
+ 
+ Async 
+	Promise: resolved, rejected
+	ES6/7: async and await: handle a promise with async and await
+			Write async code in a sync like code
+			
+			
+			
+const response = await axios.post(url, {name, password});
+const response = await axios.post(url, {name, password});
+const response = await axios.post(url, {name, password});
+
+const p1 =  axios.post(url, {name, password});
+const p2 =  axios.post(url, {name, password});
+const p3 =  axios.post(url, {name, password});
+
+await  Promise.all(p1, p2, p3)
+
+
+<div class=""
+
+<div style="color: blue"
+
+state: 
+	should always be considered(treat) as immutable
+	create a copy of the state, change the copy and assign it.
+	
+	
+http://localhost:3001/products/2 ==> 2 is path parameter
+http://localhost:3001/products/id=2 id is search parameter
+
+Complete the Edit Product page
+
+1. All the inputfield values should be populated
+2. GET http://localhost:9000/products/{id}
+3. PUT http://localhost:9000/products/{id} to save(update)
+4. on cancel and save => go back to the prev page
+
+
+React 
+
+1. APi calls( axios, fetch)
+2. Navigation (Next.js), Create react App, Vite => React-router-dom
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
