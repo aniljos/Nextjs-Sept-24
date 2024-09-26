@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -10,6 +10,14 @@ function Login(){
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const router = useRouter();
+    const nameFieldRef = useRef<HTMLInputElement>(null);
+
+    
+    useEffect(() => {
+        nameFieldRef.current?.focus();
+        
+    }, [])
+
 
     function handleNameChange(evt: ChangeEvent<HTMLInputElement>){
         setName(evt.target.value)
@@ -58,7 +66,7 @@ function Login(){
 
             <div className="form-group">
                 <label htmlFor="name">Name</label>
-                <input id="name" className="form-control" value={name} onChange={handleNameChange}/>
+                <input ref={nameFieldRef} id="name" className="form-control" value={name} onChange={handleNameChange}/>
             </div>
 
             <div className="form-group">

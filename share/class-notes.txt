@@ -124,7 +124,11 @@ state:
 	
 	
 http://localhost:3001/products/2 ==> 2 is path parameter
-http://localhost:3001/products/id=2 id is search parameter
+http://localhost:3001/products/2/abc
+http://localhost:3001/products?id=2&data=abc ==> 2 is path parameter
+http://localhost:3001/products?id=2 id is search parameter
+
+
 
 Complete the Edit Product page
 
@@ -139,6 +143,43 @@ React
 1. APi calls( axios, fetch)
 2. Navigation (Next.js), Create react App, Vite => React-router-dom
 
+
+
+<form method="POST" action="http://loalhost:9000/saveForm">
+
+
+	<input name="productName"/>
+	....
+	<button></button>
+
+</form>
+
+
+POST http://loalhost:9000/saveForm productName=IPhone;price=56000
+
+GET http://localhost:3001/products/1
+
+
+Flow: handle the click event,  Send a request 
+
+
+Component Development
+
+Next.js Component: Define Pages, Reusebale components
+
+Optimization & Design
+     Keep the components granular(small)
+	 
+	 React.memo: HOC, which creates a memoized copy of the component. The memoized copy is invalidated when the props or state of that
+				component changes
+	useCallback: memoized copy of a callback
+	useMemo: memoized copy of a value
+
+
+
+	Reusebale Component are similar to HTML element
+				<input type="text" placeholder="Enter the ID" onChange="foo()" onBlur="bar()"/>
+				<ProductView product={product} onDelete={handleDelete} onEdit={handleEdit}/>
 
 
 

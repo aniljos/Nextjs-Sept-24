@@ -2,7 +2,7 @@
 
 import { Product } from "@/model/Product";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 //import styles from './page.module.css';
 import { useRouter } from "next/navigation";
 import ProductView from "./components/ProductView";
@@ -10,6 +10,7 @@ import ProductView from "./components/ProductView";
 
 const baseUrl = "http://localhost:9000/products";
 export default function ListProducts(){
+
 
     console.log("rendering ListProducts");
     const [products, setProducts] = useState<Product[]>([])
@@ -37,7 +38,7 @@ export default function ListProducts(){
 
     }
 
-    async function handleDelete(product: Product){
+    const handleDelete = useCallback( async (product: Product)=>{
 
         try{
 
@@ -53,23 +54,35 @@ export default function ListProducts(){
                 copy_of_products.splice(index, 1);
                 setProducts(copy_of_products); 
             }
-
-               
-
         }
         catch{
             alert(`Product with id: ${product.id} not found`);
         }
 
-    }
+    }, [products]);
 
-    function handleEdit(product: Product){
+    const handleEdit = useCallback( (product: Product)=>{
         router.push("/products/" + product.id)
-    }
+    }, []);
+
+    const calculateTotalPrice = useMemo( () => {
+
+        console.log("calculateTotalPrice..");
+        let totalPrice = 0;
+        products.forEach(p => {
+            if(p.price){
+                totalPrice += p.price;
+            }
+            
+        });
+        return totalPrice;
+    }, [products])
     
     return(
         <div>
             <h4>List Products</h4>
+
+            <div className="alert alert-primary">Total Price: {calculateTotalPrice}</div>
 
             {isMessageVisible ? <div className="alert alert-info">This is a sample message</div>: null}
             {/* <br/> */}
@@ -94,7 +107,9 @@ export default function ListProducts(){
                         //                     onClick={() => handleEdit(product)}>Edit</button>
                         //     </div>
                         // </div>
-                        <ProductView key={product.id} product={product}/>
+                        <ProductView 
+                                key={product.id} product={product} 
+                                            onDelete={handleDelete} onEdit={handleEdit}/>
                     )
                 })}
             </div>

@@ -4,9 +4,11 @@ import styles from '../page.module.css';
 import { Product } from "@/model/Product"
 
 type ProductViewProps = {
-    product: Product
+    product: Product,
+    onDelete? : (product: Product)=> void,
+    onEdit? : (product: Product)=> void,
 };
-const ProductView: React.FC<ProductViewProps> = ({ product }) => {
+const ProductView: React.FC<ProductViewProps> = ({ product, onDelete, onEdit }) => {
 
     console.log("rendering product-view...");
     return (
@@ -17,15 +19,20 @@ const ProductView: React.FC<ProductViewProps> = ({ product }) => {
             <p>Price: {product.price}</p>
             <p>Desc: {product.description}</p>
 
-            {/* <div>
+            <div>
                 <button className="btn btn-danger"
-                    onClick={() => handleDelete(product)}>Delete</button>&nbsp;
+                    onClick={() => onDelete!(product)}>Delete</button>&nbsp;
                 <button className="btn btn-info"
-                    onClick={() => handleEdit(product)}>Edit</button>
-            </div> */}
+                    onClick={() => onEdit!(product)}>Edit</button>
+            </div>
         </div>
     );
 }
 
 export default React.memo(ProductView);
+
+
+
+
+
 
