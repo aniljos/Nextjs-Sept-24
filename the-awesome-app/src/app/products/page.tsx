@@ -3,14 +3,18 @@
 import { Product } from "@/model/Product";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styles from './page.module.css';
+//import styles from './page.module.css';
 import { useRouter } from "next/navigation";
+import ProductView from "./components/ProductView";
+
 
 const baseUrl = "http://localhost:9000/products";
 export default function ListProducts(){
 
     console.log("rendering ListProducts");
     const [products, setProducts] = useState<Product[]>([])
+    const [isMessageVisible, setIsVisible] = useState(false);
+
     const router = useRouter();
     
     useEffect(() => {
@@ -67,21 +71,30 @@ export default function ListProducts(){
         <div>
             <h4>List Products</h4>
 
+            {isMessageVisible ? <div className="alert alert-info">This is a sample message</div>: null}
+            {/* <br/> */}
+            <button className="btn btn-info" 
+                        onClick={() => setIsVisible(p => !p)}>
+                                    {isMessageVisible ? "Hide Message" : "Show Message"}</button>
+
             <div style={{display: 'flex', flexFlow: 'row wrap', justifyContent: 'center'}}>
                 {products.map(product => {
                     return (
-                        <div key={product.id} className={styles.product}>
-                            <p>Id: {product.id}</p>
-                            <p>Name: {product.name}</p>
-                            <p>Price: {product.price}</p>
-                            <p>Desc: {product.description}</p>
-                            <div>
-                                <button className="btn btn-danger" 
-                                            onClick={() => handleDelete(product)}>Delete</button>&nbsp;
-                                <button className="btn btn-info"
-                                            onClick={() => handleEdit(product)}>Edit</button>
-                            </div>
-                        </div>
+                        // <div key={product.id} className={styles.product}>
+                            
+                        //     <p>Id: {product.id}</p>
+                        //     <p>Name: {product.name}</p>
+                        //     <p>Price: {product.price}</p>
+                        //     <p>Desc: {product.description}</p>
+                            
+                        //     <div>
+                        //         <button className="btn btn-danger" 
+                        //                     onClick={() => handleDelete(product)}>Delete</button>&nbsp;
+                        //         <button className="btn btn-info"
+                        //                     onClick={() => handleEdit(product)}>Edit</button>
+                        //     </div>
+                        // </div>
+                        <ProductView key={product.id} product={product}/>
                     )
                 })}
             </div>
