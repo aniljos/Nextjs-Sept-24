@@ -2,40 +2,48 @@
 
 import { Product } from "@/model/Product";
 import axios from "axios";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 //import styles from './page.module.css';
 import { useRouter } from "next/navigation";
 import ProductView from "./components/ProductView";
 import { useTitle } from "@/hooks/useTitle";
-import { useProducts } from "@/hooks/useProducts";
 
 
-//const baseUrl = "http://localhost:9000/products";
-const baseUrl = "http://localhost:9000/secure_products";
+const baseUrl = "http://localhost:9000/products";
 export default function ListProducts(){
-   
-    const {products, setProducts} =  useProducts(baseUrl);
+
+
+    console.log("rendering ListProducts");
+    const [products, setProducts] = useState<Product[]>([])
     const [isMessageVisible, setIsVisible] = useState(false);
 
     const router = useRouter();
     useTitle("List products");
     
+    useEffect(() => {
+        console.log("mounted ListProducts");
+        //document.title = "List Products";
 
-    // async function fetchProducts(){
+        fetchProducts();
+        
+    }, []);
 
-    //     try {
-    //         const response = await axios.get<Product []>(baseUrl);
-    //         console.log(response.data);
-    //         setProducts(response.data);
-    //     } catch (error) {
-    //         alert("Failed to fetch the data: " +  error);
-    //     }
+    
 
-    // }
+    async function fetchProducts(){
+
+        try {
+            const response = await axios.get<Product []>(baseUrl);
+            console.log(response.data);
+            setProducts(response.data);
+        } catch (error) {
+            alert("Failed to fetch the data: " +  error);
+        }
+
+    }
 
     const handleDelete = useCallback( async (product: Product)=>{
 
-      
         try{
 
             const url = `${baseUrl}/${product.id}`;

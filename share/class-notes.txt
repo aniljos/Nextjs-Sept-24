@@ -180,6 +180,17 @@ Optimization & Design
 	Reusebale Component are similar to HTML element
 				<input type="text" placeholder="Enter the ID" onChange="foo()" onBlur="bar()"/>
 				<ProductView product={product} onDelete={handleDelete} onEdit={handleEdit}/>
+				
+				
+For a reference to a functional componenet, then we need to wrap that component with React.forwardRef
+What should reference point to? we have to define the instance that ref point to, useImeperativeHandle
+
+Reuse Code(component development)
+	Custom Hooks - functional
+	Higher Order Components(HOC) - class, funtional
+	
+
+
 
 
 

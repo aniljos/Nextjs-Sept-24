@@ -3,6 +3,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useTitle } from "@/hooks/useTitle";
 
 function Login(){
 
@@ -11,6 +12,7 @@ function Login(){
     const [message, setMessage] = useState("");
     const router = useRouter();
     const nameFieldRef = useRef<HTMLInputElement>(null);
+    useTitle("Login")
 
     
     useEffect(() => {
@@ -25,6 +27,8 @@ function Login(){
 
     async function handleSignin(){
 
+
+        console.log("name: ",  nameFieldRef.current?.value)
         if(name && password){
             setMessage("");
             const url = "http://localhost:9000/login"
