@@ -1,9 +1,16 @@
-import {configureStore} from "@reduxjs/toolkit";
+import {configureStore, combineReducers} from "@reduxjs/toolkit";
 import { authReducer } from "./authReducer";
+import { gadgetReducer } from "./gadgetsReducer";
 
-
+const combinedReducers = combineReducers({
+    auth: authReducer,
+    gadgets: gadgetReducer
+})
 
 //store
 export const store = configureStore({
-    reducer: authReducer
+    reducer: combinedReducers
 });
+
+export type AppState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

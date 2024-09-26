@@ -27,7 +27,7 @@ export const authReducer = (currentState=initState, action: AuthActionType) => {
             refreshToken: action.payload?.refreshToken
         }
     }
-    if(action.type === 'Logged_out'){
+    if(action.type === 'logged_out'){
         return initState;
     }
 

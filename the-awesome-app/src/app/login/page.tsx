@@ -4,6 +4,8 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useTitle } from "@/hooks/useTitle";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../state/redux/store";
 
 function Login(){
 
@@ -13,6 +15,7 @@ function Login(){
     const router = useRouter();
     const nameFieldRef = useRef<HTMLInputElement>(null);
     useTitle("Login")
+    const dispatch = useDispatch<AppDispatch>();
 
     
     useEffect(() => {
@@ -46,11 +49,14 @@ function Login(){
                 console.log("response", response);
                 console.log("AccessToken: ", response.data.accessToken)
                 console.log("RefreshToken: ", response.data.refreshToken);
-                router.push("/about");
+                dispatch({type: "logged_in", payload: {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken}})
+
+                router.push("/products");
             } catch (error) {
 
                 console.log("error", error);
                 setMessage("Invalid Credentials");
+                dispatch({type: "logged_out"});
                 
             }
 
