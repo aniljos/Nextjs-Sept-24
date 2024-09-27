@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import LoadingCustomers from './loading';
 
-async function ListCustomers(){
+export async function ListCustomers(){
 
     console.log("rendering ListCustomers")
 
@@ -9,7 +9,7 @@ async function ListCustomers(){
 
     //api calls
 
-    await new Promise(resolve => setTimeout(resolve, 5000));
+    //await new Promise(resolve => setTimeout(resolve, 5000));
 
     const url = "http://localhost:9000/customers";
     const response = await fetch(url,{cache: 'no-store'}); //SSR

@@ -20,6 +20,7 @@ export const authReducer = (currentState=initState, action: AuthActionType) => {
     //action: {type: "logged_out"}
 
      //return the updated state
+     
     if(action.type === "logged_in"){
         return {
             isAuthenticated: true,
