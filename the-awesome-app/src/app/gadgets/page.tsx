@@ -26,11 +26,11 @@ const GadgetStore: React.FC = () => {
     }
     function renderProducts() {
 
-        const productsView =  products.map((item, index) => {
+        const productsView =  products.map((item) => {
            
 
             return (
-                <div className="col" key={index} >
+                <div className="col" key={item.id} >
                     <div className="card border-warning" >
                         <div className="card-body text-success">
                             <h5 className="card-title">{item.name}</h5>
