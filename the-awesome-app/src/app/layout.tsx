@@ -5,6 +5,7 @@ import "./globals.css";
 import AppReduxProvider from "./state/redux/AppReduxProvider";
 import { AppThemeContextProvider } from "./state/context/AppThemeContext";
 import AppBar from "@/components/AppBar";
+import AppErrorBoundary from "@/error-boundary/AppErrorBoundary";
 
 
 const geistSans = localFont({
@@ -34,17 +35,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
 
-        <AppReduxProvider>
-          <AppThemeContextProvider>
-          <div className="container-fluid">
-            
-            <AppBar/>
-            <main>
-              {children}
-            </main>
-          </div>
-          </AppThemeContextProvider>
-        </AppReduxProvider>
+        <AppErrorBoundary>
+          <AppReduxProvider>
+            <AppThemeContextProvider>
+              <div className="container-fluid">
+
+                <AppBar />
+                <main>
+                  {children}
+                </main>
+              </div>
+            </AppThemeContextProvider>
+          </AppReduxProvider>
+        </AppErrorBoundary>
       </body>
     </html>
   );
