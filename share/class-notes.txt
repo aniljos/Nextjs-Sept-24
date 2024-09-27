@@ -189,6 +189,20 @@ Reuse Code(component development)
 	Custom Hooks - functional
 	Higher Order Components(HOC) - class, funtional
 	
+	Custom Hooks: reuseability
+		Reuse hooks
+	
+	
+Redux
+ Action is an object: type(mandatory): operation & payload(or any name/optional): data
+	- {type:"üpdate_the_product", payload: {id: 5, name: "abc"} }
+	- {type:"delete_the_product", id: 5}
+    - {type:"removeAll"} 
+ Store: central store, one per app
+Reducer: functions that process the actions updates the store	
+		  multiple reducers
+		  
+		  
 
 
 
