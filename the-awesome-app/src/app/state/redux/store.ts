@@ -1,4 +1,4 @@
-import {configureStore, combineReducers} from "@reduxjs/toolkit";
+import {configureStore, combineReducers, } from "@reduxjs/toolkit";
 import { authReducer } from "./authReducer";
 import { gadgetReducer } from "./gadgetsReducer";
 
@@ -9,7 +9,11 @@ const combinedReducers = combineReducers({
 
 //store
 export const store = configureStore({
-    reducer: combinedReducers
+    reducer: combinedReducers,
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware({
+          serializableCheck: false,
+        }),
 });
 
 export type AppState = ReturnType<typeof store.getState>;
