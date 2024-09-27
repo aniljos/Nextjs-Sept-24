@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, forwardRef, useImperativeHandle } from "react";
+import React, { useEffect } from "react";
 
 type MessageProps = {
     text: string,
@@ -19,27 +19,27 @@ export type MessageType = {
     about: string;
     showMessage: () => void
 }
-const Message:React.FC<MessageProps> = React.forwardRef(({color='green', text}, ref: any) => {
+const Message:React.FC<MessageProps> = function({color='green', text}, ref: MessageType){
 
 
     //console.log("props", props);
 
-    useImperativeHandle(ref, () => {
+    // useImperativeHandle(ref, () => {
 
-        return {
-            about: "This is the Message component",
-            showMessage: () => {
-                alert("This is an alert from the Message component")
-            },
-            focus: ()=>{
+    //     return {
+    //         about: "This is the Message component",
+    //         showMessage: () => {
+    //             alert("This is an alert from the Message component")
+    //         },
+    //         focus: ()=>{
 
-            },
-            setValue: () => {
+    //         },
+    //         setValue: () => {
                 
-            }
-        }
+    //         }
+    //     }
 
-    })
+    // })
 
     useEffect(() => {
 
@@ -67,7 +67,7 @@ const Message:React.FC<MessageProps> = React.forwardRef(({color='green', text}, 
             <p>Evaluate expression: {5 + 7}</p>
         </div>
     )
-});
+};
 
 export default Message;
 

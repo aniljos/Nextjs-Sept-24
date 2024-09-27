@@ -4,7 +4,7 @@ import { Component, ReactNode } from "react";
 
 type AppErrorBoundaryProps = {
 
-    children: any
+    children: ReactNode
 }
 
 class AppErrorBoundary extends Component<AppErrorBoundaryProps>{

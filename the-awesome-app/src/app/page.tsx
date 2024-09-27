@@ -1,20 +1,20 @@
 'use client';
 
 import Counter from "@/components/Counter";
-import Message, { MessageType } from "@/components/Message";
-import { useEffect, useRef } from "react";
+ import Message from "@/components/Message";
+// import { useEffect, useRef } from "react";
 
 //import Message from '../components/Message';
 
 
 export default function Home() {
 
-  const messageRef = useRef<MessageType>(null);
+  //const messageRef = useRef<MessageType>(null);
 
-  useEffect(() => {
-    console.log("messageRef", messageRef.current);
-    //messageRef.current?.showMessage();
-  }, [])
+  // useEffect(() => {
+  //   //console.log("messageRef", messageRef.current);
+  //   //messageRef.current?.showMessage();
+  // }, [])
 
 
   return (
@@ -26,7 +26,7 @@ export default function Home() {
       <Counter initialValue={5}/>
       {/* <Counter initialValue={10}/> */}
 
-      <Message ref={messageRef} text="Next.js" />
+      <Message text="Next.js" />
     </div>
   );
 }
