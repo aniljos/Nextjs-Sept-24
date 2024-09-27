@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { AppState } from "../state/redux/store";
 import { CartItem } from "@/model/CartItem";
+import { removeFromCart } from "../state/redux/gadgetsReducer";
 
 const ViewCart: React.FC = () => {
 
@@ -11,7 +12,10 @@ const ViewCart: React.FC = () => {
     const dispatch = useDispatch();
 
     function remove(item: CartItem) {
-       dispatch({type: "remove_from_cart", id: item.product?.id})
+       //dispatch({type: "remove_from_cart", id: item.product?.id})
+       if(item.product?.id){
+            dispatch(removeFromCart(item.product?.id));
+       }
     }
     return (
         <div>

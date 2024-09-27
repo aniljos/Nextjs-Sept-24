@@ -5,6 +5,7 @@ import { useProducts } from "@/hooks/useProducts";
 import { AppDispatch } from "../state/redux/store";
 import { CartItem } from "@/model/CartItem";
 import { Product } from "@/model/Product";
+import {addToCart as addToReduxCart} from "../state/redux/gadgetsReducer";
 
 
 const GadgetStore: React.FC = () => {
@@ -19,8 +20,8 @@ const GadgetStore: React.FC = () => {
     function addToCart(product: Product): void {
        
         const cartItem = new CartItem(product, 1);
-        dispatch({type: 'add_to_cart', payload: cartItem});
-        //dispatch(addToRedux(cartItem));
+        //dispatch({type: 'add_to_cart', payload: cartItem});
+        dispatch(addToReduxCart(cartItem));
         
     }
     function renderProducts() {
